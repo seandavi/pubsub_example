@@ -2,6 +2,8 @@ import time
 
 from google.cloud import pubsub_v1
 
+# Modify the project ID to match your own
+# This project ID will NOT work for you
 project_id = "isb-cgc-01-0006"
 topic_name = "my-topic"
 
