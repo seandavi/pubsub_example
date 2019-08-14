@@ -1,4 +1,4 @@
-from google.cloud import pubsub_v1
+from google.cloud import pubsub
 import logging
 
 # Modify the project ID to match your own
@@ -6,7 +6,7 @@ import logging
 project_id = "isb-cgc-01-0006"
 topic_name = "my-topic" 
 
-publisher = pubsub_v1.PublisherClient()
+publisher = pubsub.PublisherClient()
 # The `topic_path` method creates a fully qualified identifier
 # in the form `projects/{project_id}/topics/{topic_name}`
 topic_path = publisher.topic_path(project_id, topic_name)
