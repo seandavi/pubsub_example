@@ -1,6 +1,6 @@
 import time
 
-from google.cloud import pubsub_v1
+from google.cloud import pubsub
 
 # Modify the project ID to match your own
 # This project ID will NOT work for you
@@ -9,7 +9,7 @@ topic_name = "my-topic"
 
 subscription_name="my-sub"
 
-subscriber = pubsub_v1.SubscriberClient()
+subscriber = pubsub.SubscriberClient()
 # The `subscription_path` method creates a fully qualified identifier
 # in the form `projects/{project_id}/subscriptions/{subscription_name}`
 subscription_path = subscriber.subscription_path(
