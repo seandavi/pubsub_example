@@ -20,15 +20,20 @@ subscription_path = subscriber.subscription_path(
 
 
 def callback(message):
+    """Will be run for each message"""
     import subprocess
     print('Received message: {}'.format(message))
+    # Doing a silly ls here, but can be any command, basically.
     res = subprocess.run(["ls", "-l", "/dev/null"], capture_output=True)
     import time
     time.sleep(20)
+    # If returncode is not 0, let pubsub know that the
+    # job is not acknowledged. (put it back in queue)
     if(res.returncode != 0):
         message.nack()
     logging.info(res.stdout)
     logging.info(res.stderr)
+    # Acknowledge completed message (remove from queue)
     message.ack()
 
 fc = pubsub_v1.types.FlowControl(max_messages=1)
